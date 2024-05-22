@@ -2,6 +2,10 @@ import React, { useEffect } from 'react';
 
 const Ads = () => {
   useEffect(() => {
+    const initializeAds = () => {
+      (window.adsbygoogle = window.adsbygoogle || []).push({});
+    };
+
     const scriptId = 'adsbygoogle-script';
     if (!document.getElementById(scriptId)) {
       const script = document.createElement('script');
@@ -11,18 +15,16 @@ const Ads = () => {
       script.crossOrigin = 'anonymous';
       document.head.appendChild(script);
 
-      script.onload = () => {
-        (window.adsbygoogle = window.adsbygoogle || []).push({});
-      };
+      script.onload = initializeAds;
     } else {
-      (window.adsbygoogle = window.adsbygoogle || []).push({});
+      initializeAds();
     }
   }, []);
 
   return (
-    <div>
+    <div style={{ width: '100%', textAlign: 'center' }}>
       <ins className="adsbygoogle"
-           style={{ display: 'block' }}
+           style={{ display: 'block', width: '100%', height: '100px' }}
            data-ad-client="ca-pub-3485555502925175"
            data-ad-slot="1197850142"
            data-ad-format="auto"
